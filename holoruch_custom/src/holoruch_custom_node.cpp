@@ -9,8 +9,12 @@
 #include <dynamic_reconfigure/server.h>
 #include <holoruch_custom/filterConfig.h>
 
+// Custom message
+#include <holoruch_custom_msgs/EdgePixels.h>
+
 ros::Subscriber sub;
 ros::Publisher pub;
+ros::Publisher compPub;
 holoruch_custom::filterConfig config;
 
 void imageCallback(const sensor_msgs::ImageConstPtr& msg)
@@ -24,7 +28,11 @@ void imageCallback(const sensor_msgs::ImageConstPtr& msg)
 	cv::Mat img_edges_color(cvimg->image.size(), cvimg->image.type(), cv::Scalar(config.edgeColorBlue, config.edgeColorGreen, config.edgeColorRed));
 	img_edges_color.copyTo(cvimg->image, img_gray); // use img_gray as mask
 
+  holoruch_custom_msgs::EdgePixels edgeMsg;
+  // calculate edge pixel components here and fill edgeMsg
+
 	pub.publish(cvimg->toImageMsg());
+  compPub.publish(edgeMsg);
 }
 
 void dynamic_reconf_callback(holoruch_custom::filterConfig &p_config, uint32_t level) {
@@ -39,6 +47,7 @@ int main(int argc, char **argv)
 
   sub = n.subscribe("image_raw", 1, imageCallback);
   pub = n.advertise<sensor_msgs::Image>("image_edges", 1);
+  compPub = n.advertise<holoruch_custom_msgs::EdgePixels>("edges", 1);
 
   dynamic_reconfigure::Server<holoruch_custom::filterConfig> server;
   server.setCallback(boost::bind(&dynamic_reconf_callback, _1, _2));
