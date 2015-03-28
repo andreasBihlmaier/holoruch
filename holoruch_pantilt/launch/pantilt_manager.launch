@@ -12,7 +12,10 @@
      </rosparam>
   </node>
 
-  <node ns="/pantilt_controller"
-        name="pantilt_trajectory_feedback2joint_state" pkg="holoruch_dynamixel" type="trajectory_feedback2joint_state.py"
-        output="screen" />
+  <group ns="/pantilt_controller">
+    <param name="robot_description" command="cat $(find holoruch_pantilt_description)/urdf/holoruch_pantilt.urdf" />
+    <node name="pantilt_trajectory_feedback2joint_state" pkg="holoruch_dynamixel" type="trajectory_feedback2joint_state.py"
+          output="screen" />
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  </group>
 </launch>
