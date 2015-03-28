@@ -1,0 +1,5 @@
+<launch>
+  <node ns="/webcam"
+        pkg="image_proc" type="image_proc" name="image_proc_webcam"
+        output="screen" />
+</launch>
