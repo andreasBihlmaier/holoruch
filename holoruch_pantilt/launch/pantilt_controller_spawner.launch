@@ -1,0 +1,19 @@
+<launch>
+  <rosparam file="$(find holoruch_pantilt)/config/pantilt_joint_controllers.yaml" command="load"/>
+  
+  <node name="pantilt_controller_spawner" pkg="dynamixel_controllers" type="controller_spawner.py"
+        args="--manager=dxl_manager
+              --port=pan_tilt_port
+              --type=simple
+              pan_controller
+              tilt_controller"
+        output="screen"/>
+
+  <node name="pantilt_controller_spawner_meta" pkg="dynamixel_controllers" type="controller_spawner.py"
+        args="--manager=dxl_manager
+              --type=meta
+              pantilt_controller
+              pan_controller
+              tilt_controller"
+        output="screen"/>
+</launch>

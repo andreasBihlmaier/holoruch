@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package>
-  <name>holoruch_custom</name>
+  <name>holoruch_pantilt</name>
   <version>0.0.0</version>
-  <description>Hands-on Learning of ROS using Common Hardware chapter, a simple custom image processing node with dynamic reconfigure</description>
+  <description>Hands-on Learning of ROS using Common Hardware chapter, Dynamixel pan-tilt unit</description>
   <maintainer email="andreas.bihlmaier@gmx.de">Andreas Bihlmaier</maintainer>
   <license>MIT</license>
 
@@ -10,7 +10,7 @@
   <!-- Url tags are optional, but mutiple are allowed, one per tag -->
   <!-- Optional attribute type can be: website, bugtracker, or repository -->
   <!-- Example: -->
-  <!-- <url type="website">http://wiki.ros.org/holoruch_custom</url> -->
+  <!-- <url type="website">http://wiki.ros.org/holoruch_pantilt</url> -->
 
 
   <author email="andreas.bihlmaier@gmx.de">Andreas Bihlmaier</author>
@@ -28,14 +28,8 @@
   <!-- Use test_depend for packages you need only for testing: -->
   <!--   <test_depend>gtest</test_depend> -->
   <buildtool_depend>catkin</buildtool_depend>
-  <build_depend>cv_bridge</build_depend>
-  <build_depend>dynamic_reconfigure</build_depend>
-  <build_depend>roscpp</build_depend>
-  <build_depend>holoruch_custom_msgs</build_depend>
-  <run_depend>cv_bridge</run_depend>
-  <run_depend>dynamic_reconfigure</run_depend>
-  <run_depend>roscpp</run_depend>
-  <run_depend>holoruch_custom_msgs</run_depend>
+  <build_depend>dynamixel_controllers</build_depend>
+  <run_depend>dynamixel_controllers</run_depend>
 
 
   <!-- The export tag contains other, unspecified, tags -->
