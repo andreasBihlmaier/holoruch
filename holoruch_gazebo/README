@@ -1,0 +1,2 @@
+Copy into gazebo model directory:
+cp -LR holoruch_pantilt_description ~/.gazebo/models/
